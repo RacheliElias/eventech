@@ -1,0 +1,10 @@
+D:\Users\user\Desktop\projectEventTek\EventTekServer\BLL\bin\Debug\BLL.dll
+D:\Users\user\Desktop\projectEventTek\EventTekServer\BLL\bin\Debug\BLL.pdb
+D:\Users\user\Desktop\projectEventTek\EventTekServer\BLL\obj\Debug\BLL.csprojResolveAssemblyReference.cache
+D:\Users\user\Desktop\projectEventTek\EventTekServer\BLL\obj\Debug\BLL.dll
+D:\Users\user\Desktop\projectEventTek\EventTekServer\BLL\obj\Debug\BLL.pdb
+d:\Users\user\Desktop\projectEventTek\EventTekServer\BLL\bin\Debug\DAL.dll
+d:\Users\user\Desktop\projectEventTek\EventTekServer\BLL\bin\Debug\EntityFramework.dll
+d:\Users\user\Desktop\projectEventTek\EventTekServer\BLL\bin\Debug\EntityFramework.SqlServer.dll
+d:\Users\user\Desktop\projectEventTek\EventTekServer\BLL\bin\Debug\DAL.pdb
+d:\Users\user\Desktop\projectEventTek\EventTekServer\BLL\bin\Debug\DAL.dll.config

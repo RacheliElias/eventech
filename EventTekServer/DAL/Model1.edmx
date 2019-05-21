@@ -1,0 +1,661 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="EventsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Customers">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="CustomerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Street" Type="nvarchar" MaxLength="50" />
+          <Property Name="NumHouse" Type="int" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Foods">
+          <Key>
+            <PropertyRef Name="FoodId" />
+          </Key>
+          <Property Name="FoodId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryNum" Type="int" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="FoodName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Menu">
+          <Key>
+            <PropertyRef Name="MenuId" />
+          </Key>
+          <Property Name="MenuId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MenuForOrder">
+          <Key>
+            <PropertyRef Name="MenuForOrderId" />
+          </Key>
+          <Property Name="MenuForOrderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MenuID" Type="int" Nullable="false" />
+          <Property Name="CategoryNum" Type="int" Nullable="false" />
+          <Property Name="FoodId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="int" Nullable="false" />
+          <Property Name="CustomerId" Type="int" Nullable="false" />
+          <Property Name="OrderDate" Type="date" Nullable="false" />
+          <Property Name="EventDate" Type="date" Nullable="false" />
+          <Property Name="StatusPayment" Type="bit" Nullable="false" />
+          <Property Name="MorningOrEvening" Type="int" Nullable="false" />
+          <Property Name="QuantityInvited" Type="int" Nullable="false" />
+          <Property Name="NumBridalChair" Type="int" />
+          <Property Name="OrderSum" Type="int" Nullable="false" />
+          <Property Name="AdvancePaymentSum" Type="int" Nullable="false" />
+          <Property Name="EventKind" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Events.dbo.OrderChange' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="OrderChange">
+          <Key>
+            <PropertyRef Name="OrderId" />
+            <PropertyRef Name="CustomerId" />
+            <PropertyRef Name="OrderDate" />
+            <PropertyRef Name="EventDate" />
+            <PropertyRef Name="EventKind" />
+            <PropertyRef Name="StatusPayment" />
+            <PropertyRef Name="MorningOrEvening" />
+            <PropertyRef Name="QuantityInvited" />
+            <PropertyRef Name="OrderSum" />
+            <PropertyRef Name="AdvancePaymentSum" />
+          </Key>
+          <Property Name="OrderId" Type="int" Nullable="false" />
+          <Property Name="CustomerId" Type="int" Nullable="false" />
+          <Property Name="OrderDate" Type="date" Nullable="false" />
+          <Property Name="EventDate" Type="date" Nullable="false" />
+          <Property Name="EventKind" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="StatusPayment" Type="bit" Nullable="false" />
+          <Property Name="MorningOrEvening" Type="int" Nullable="false" />
+          <Property Name="QuantityInvited" Type="int" Nullable="false" />
+          <Property Name="NumBridalChair" Type="int" />
+          <Property Name="OrderSum" Type="int" Nullable="false" />
+          <Property Name="AdvancePaymentSum" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Events.dbo.PayMents' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="PayMents">
+          <Key>
+            <PropertyRef Name="OrderId" />
+            <PropertyRef Name="PaymentCyclistDetails" />
+            <PropertyRef Name="OrderPaymentCsicleDetails" />
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="OrderId" Type="int" Nullable="false" />
+          <Property Name="PaymentCyclistDetails" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="OrderPaymentCsicleDetails" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CustomerId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_Menu_Order">
+          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="Menu" Type="Self.Menu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="OrderId" />
+            </Principal>
+            <Dependent Role="Menu">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MenuForOrder_Foods">
+          <End Role="Foods" Type="Self.Foods" Multiplicity="1" />
+          <End Role="MenuForOrder" Type="Self.MenuForOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Foods">
+              <PropertyRef Name="FoodId" />
+            </Principal>
+            <Dependent Role="MenuForOrder">
+              <PropertyRef Name="FoodId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MenuForOrder_Menu">
+          <End Role="Menu" Type="Self.Menu" Multiplicity="1" />
+          <End Role="MenuForOrder" Type="Self.MenuForOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Menu">
+              <PropertyRef Name="MenuId" />
+            </Principal>
+            <Dependent Role="MenuForOrder">
+              <PropertyRef Name="MenuID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Customers">
+          <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="CustomerId" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderChange_Customers">
+          <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
+          <End Role="OrderChange" Type="Self.OrderChange" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="CustomerId" />
+            </Principal>
+            <Dependent Role="OrderChange">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderChange_Order">
+          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="OrderChange" Type="Self.OrderChange" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="OrderId" />
+            </Principal>
+            <Dependent Role="OrderChange">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PayMents_Customers">
+          <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
+          <End Role="PayMents" Type="Self.PayMents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="CustomerId" />
+            </Principal>
+            <Dependent Role="PayMents">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PayMents_Order">
+          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="PayMents" Type="Self.PayMents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="OrderId" />
+            </Principal>
+            <Dependent Role="PayMents">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EventsModelStoreContainer">
+          <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Foods" EntityType="Self.Foods" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Menu" EntityType="Self.Menu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MenuForOrder" EntityType="Self.MenuForOrder" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderChange" EntityType="Self.OrderChange" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [OrderChange].[OrderId] AS [OrderId], 
+    [OrderChange].[CustomerId] AS [CustomerId], 
+    [OrderChange].[OrderDate] AS [OrderDate], 
+    [OrderChange].[EventDate] AS [EventDate], 
+    [OrderChange].[EventKind] AS [EventKind], 
+    [OrderChange].[StatusPayment] AS [StatusPayment], 
+    [OrderChange].[MorningOrEvening] AS [MorningOrEvening], 
+    [OrderChange].[QuantityInvited] AS [QuantityInvited], 
+    [OrderChange].[NumBridalChair] AS [NumBridalChair], 
+    [OrderChange].[OrderSum] AS [OrderSum], 
+    [OrderChange].[AdvancePaymentSum] AS [AdvancePaymentSum]
+    FROM [dbo].[OrderChange] AS [OrderChange]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="PayMents" EntityType="Self.PayMents" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [PayMents].[OrderId] AS [OrderId], 
+    [PayMents].[PaymentCyclistDetails] AS [PaymentCyclistDetails], 
+    [PayMents].[OrderPaymentCsicleDetails] AS [OrderPaymentCsicleDetails], 
+    [PayMents].[CustomerId] AS [CustomerId]
+    FROM [dbo].[PayMents] AS [PayMents]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Menu_Order" Association="Self.FK_Menu_Order">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="Menu" EntitySet="Menu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MenuForOrder_Foods" Association="Self.FK_MenuForOrder_Foods">
+            <End Role="Foods" EntitySet="Foods" />
+            <End Role="MenuForOrder" EntitySet="MenuForOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MenuForOrder_Menu" Association="Self.FK_MenuForOrder_Menu">
+            <End Role="Menu" EntitySet="Menu" />
+            <End Role="MenuForOrder" EntitySet="MenuForOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Customers" Association="Self.FK_Order_Customers">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderChange_Customers" Association="Self.FK_OrderChange_Customers">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="OrderChange" EntitySet="OrderChange" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderChange_Order" Association="Self.FK_OrderChange_Order">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="OrderChange" EntitySet="OrderChange" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PayMents_Customers" Association="Self.FK_PayMents_Customers">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="PayMents" EntitySet="PayMents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PayMents_Order" Association="Self.FK_PayMents_Order">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="PayMents" EntitySet="PayMents" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EventsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Customers">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="CustomerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Street" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NumHouse" Type="Int32" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_Order_Customers" FromRole="Customers" ToRole="Order" />
+          <NavigationProperty Name="OrderChange" Relationship="Self.FK_OrderChange_Customers" FromRole="Customers" ToRole="OrderChange" />
+          <NavigationProperty Name="PayMents" Relationship="Self.FK_PayMents_Customers" FromRole="Customers" ToRole="PayMents" />
+        </EntityType>
+        <EntityType Name="Foods">
+          <Key>
+            <PropertyRef Name="FoodId" />
+          </Key>
+          <Property Name="FoodId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryNum" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="FoodName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="MenuForOrder" Relationship="Self.FK_MenuForOrder_Foods" FromRole="Foods" ToRole="MenuForOrder" />
+        </EntityType>
+        <EntityType Name="Menu">
+          <Key>
+            <PropertyRef Name="MenuId" />
+          </Key>
+          <Property Name="MenuId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_Menu_Order" FromRole="Menu" ToRole="Order" />
+          <NavigationProperty Name="MenuForOrder" Relationship="Self.FK_MenuForOrder_Menu" FromRole="Menu" ToRole="MenuForOrder" />
+        </EntityType>
+        <EntityType Name="MenuForOrder">
+          <Key>
+            <PropertyRef Name="MenuForOrderId" />
+          </Key>
+          <Property Name="MenuForOrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MenuID" Type="Int32" Nullable="false" />
+          <Property Name="CategoryNum" Type="Int32" Nullable="false" />
+          <Property Name="FoodId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Foods" Relationship="Self.FK_MenuForOrder_Foods" FromRole="MenuForOrder" ToRole="Foods" />
+          <NavigationProperty Name="Menu" Relationship="Self.FK_MenuForOrder_Menu" FromRole="MenuForOrder" ToRole="Menu" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="Int32" Nullable="false" />
+          <Property Name="CustomerId" Type="Int32" Nullable="false" />
+          <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EventDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="StatusPayment" Type="Boolean" Nullable="false" />
+          <Property Name="MorningOrEvening" Type="Int32" Nullable="false" />
+          <Property Name="QuantityInvited" Type="Int32" Nullable="false" />
+          <Property Name="NumBridalChair" Type="Int32" />
+          <Property Name="OrderSum" Type="Int32" Nullable="false" />
+          <Property Name="AdvancePaymentSum" Type="Int32" Nullable="false" />
+          <Property Name="EventKind" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Customers" Relationship="Self.FK_Order_Customers" FromRole="Order" ToRole="Customers" />
+          <NavigationProperty Name="Menu" Relationship="Self.FK_Menu_Order" FromRole="Order" ToRole="Menu" />
+          <NavigationProperty Name="OrderChange" Relationship="Self.FK_OrderChange_Order" FromRole="Order" ToRole="OrderChange" />
+          <NavigationProperty Name="PayMents" Relationship="Self.FK_PayMents_Order" FromRole="Order" ToRole="PayMents" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="OrderChange">
+          <Key>
+            <PropertyRef Name="OrderId" />
+            <PropertyRef Name="CustomerId" />
+            <PropertyRef Name="OrderDate" />
+            <PropertyRef Name="EventDate" />
+            <PropertyRef Name="EventKind" />
+            <PropertyRef Name="StatusPayment" />
+            <PropertyRef Name="MorningOrEvening" />
+            <PropertyRef Name="QuantityInvited" />
+            <PropertyRef Name="OrderSum" />
+            <PropertyRef Name="AdvancePaymentSum" />
+          </Key>
+          <Property Name="OrderId" Type="Int32" Nullable="false" />
+          <Property Name="CustomerId" Type="Int32" Nullable="false" />
+          <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EventDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EventKind" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StatusPayment" Type="Boolean" Nullable="false" />
+          <Property Name="MorningOrEvening" Type="Int32" Nullable="false" />
+          <Property Name="QuantityInvited" Type="Int32" Nullable="false" />
+          <Property Name="NumBridalChair" Type="Int32" />
+          <Property Name="OrderSum" Type="Int32" Nullable="false" />
+          <Property Name="AdvancePaymentSum" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Customers" Relationship="Self.FK_OrderChange_Customers" FromRole="OrderChange" ToRole="Customers" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_OrderChange_Order" FromRole="OrderChange" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="PayMents">
+          <Key>
+            <PropertyRef Name="OrderId" />
+            <PropertyRef Name="PaymentCyclistDetails" />
+            <PropertyRef Name="OrderPaymentCsicleDetails" />
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="OrderId" Type="Int32" Nullable="false" />
+          <Property Name="PaymentCyclistDetails" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="OrderPaymentCsicleDetails" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CustomerId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Customers" Relationship="Self.FK_PayMents_Customers" FromRole="PayMents" ToRole="Customers" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_PayMents_Order" FromRole="PayMents" ToRole="Order" />
+        </EntityType>
+        <Association Name="FK_Order_Customers">
+          <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="CustomerId" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderChange_Customers">
+          <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
+          <End Role="OrderChange" Type="Self.OrderChange" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="CustomerId" />
+            </Principal>
+            <Dependent Role="OrderChange">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PayMents_Customers">
+          <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
+          <End Role="PayMents" Type="Self.PayMents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="CustomerId" />
+            </Principal>
+            <Dependent Role="PayMents">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MenuForOrder_Foods">
+          <End Role="Foods" Type="Self.Foods" Multiplicity="1" />
+          <End Role="MenuForOrder" Type="Self.MenuForOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Foods">
+              <PropertyRef Name="FoodId" />
+            </Principal>
+            <Dependent Role="MenuForOrder">
+              <PropertyRef Name="FoodId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Menu_Order">
+          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="Menu" Type="Self.Menu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="OrderId" />
+            </Principal>
+            <Dependent Role="Menu">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MenuForOrder_Menu">
+          <End Role="Menu" Type="Self.Menu" Multiplicity="1" />
+          <End Role="MenuForOrder" Type="Self.MenuForOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Menu">
+              <PropertyRef Name="MenuId" />
+            </Principal>
+            <Dependent Role="MenuForOrder">
+              <PropertyRef Name="MenuID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderChange_Order">
+          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="OrderChange" Type="Self.OrderChange" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="OrderId" />
+            </Principal>
+            <Dependent Role="OrderChange">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PayMents_Order">
+          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="PayMents" Type="Self.PayMents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="OrderId" />
+            </Principal>
+            <Dependent Role="PayMents">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EventsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Customers" EntityType="Self.Customers" />
+          <EntitySet Name="Foods" EntityType="Self.Foods" />
+          <EntitySet Name="Menu" EntityType="Self.Menu" />
+          <EntitySet Name="MenuForOrder" EntityType="Self.MenuForOrder" />
+          <EntitySet Name="Order" EntityType="Self.Order" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="OrderChange" EntityType="Self.OrderChange" />
+          <EntitySet Name="PayMents" EntityType="Self.PayMents" />
+          <AssociationSet Name="FK_Order_Customers" Association="Self.FK_Order_Customers">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderChange_Customers" Association="Self.FK_OrderChange_Customers">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="OrderChange" EntitySet="OrderChange" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PayMents_Customers" Association="Self.FK_PayMents_Customers">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="PayMents" EntitySet="PayMents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MenuForOrder_Foods" Association="Self.FK_MenuForOrder_Foods">
+            <End Role="Foods" EntitySet="Foods" />
+            <End Role="MenuForOrder" EntitySet="MenuForOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Menu_Order" Association="Self.FK_Menu_Order">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="Menu" EntitySet="Menu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MenuForOrder_Menu" Association="Self.FK_MenuForOrder_Menu">
+            <End Role="Menu" EntitySet="Menu" />
+            <End Role="MenuForOrder" EntitySet="MenuForOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderChange_Order" Association="Self.FK_OrderChange_Order">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="OrderChange" EntitySet="OrderChange" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PayMents_Order" Association="Self.FK_PayMents_Order">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="PayMents" EntitySet="PayMents" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EventsModelStoreContainer" CdmEntityContainer="EventsEntities">
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="EventsModel.Customers">
+              <MappingFragment StoreEntitySet="Customers">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="NumHouse" ColumnName="NumHouse" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Foods">
+            <EntityTypeMapping TypeName="EventsModel.Foods">
+              <MappingFragment StoreEntitySet="Foods">
+                <ScalarProperty Name="FoodId" ColumnName="FoodId" />
+                <ScalarProperty Name="CategoryNum" ColumnName="CategoryNum" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="FoodName" ColumnName="FoodName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Menu">
+            <EntityTypeMapping TypeName="EventsModel.Menu">
+              <MappingFragment StoreEntitySet="Menu">
+                <ScalarProperty Name="MenuId" ColumnName="MenuId" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MenuForOrder">
+            <EntityTypeMapping TypeName="EventsModel.MenuForOrder">
+              <MappingFragment StoreEntitySet="MenuForOrder">
+                <ScalarProperty Name="MenuForOrderId" ColumnName="MenuForOrderId" />
+                <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+                <ScalarProperty Name="CategoryNum" ColumnName="CategoryNum" />
+                <ScalarProperty Name="FoodId" ColumnName="FoodId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Order">
+            <EntityTypeMapping TypeName="EventsModel.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="EventDate" ColumnName="EventDate" />
+                <ScalarProperty Name="StatusPayment" ColumnName="StatusPayment" />
+                <ScalarProperty Name="MorningOrEvening" ColumnName="MorningOrEvening" />
+                <ScalarProperty Name="QuantityInvited" ColumnName="QuantityInvited" />
+                <ScalarProperty Name="NumBridalChair" ColumnName="NumBridalChair" />
+                <ScalarProperty Name="OrderSum" ColumnName="OrderSum" />
+                <ScalarProperty Name="AdvancePaymentSum" ColumnName="AdvancePaymentSum" />
+                <ScalarProperty Name="EventKind" ColumnName="EventKind" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="EventsModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderChange">
+            <EntityTypeMapping TypeName="EventsModel.OrderChange">
+              <MappingFragment StoreEntitySet="OrderChange">
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="EventDate" ColumnName="EventDate" />
+                <ScalarProperty Name="EventKind" ColumnName="EventKind" />
+                <ScalarProperty Name="StatusPayment" ColumnName="StatusPayment" />
+                <ScalarProperty Name="MorningOrEvening" ColumnName="MorningOrEvening" />
+                <ScalarProperty Name="QuantityInvited" ColumnName="QuantityInvited" />
+                <ScalarProperty Name="NumBridalChair" ColumnName="NumBridalChair" />
+                <ScalarProperty Name="OrderSum" ColumnName="OrderSum" />
+                <ScalarProperty Name="AdvancePaymentSum" ColumnName="AdvancePaymentSum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PayMents">
+            <EntityTypeMapping TypeName="EventsModel.PayMents">
+              <MappingFragment StoreEntitySet="PayMents">
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="PaymentCyclistDetails" ColumnName="PaymentCyclistDetails" />
+                <ScalarProperty Name="OrderPaymentCsicleDetails" ColumnName="OrderPaymentCsicleDetails" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

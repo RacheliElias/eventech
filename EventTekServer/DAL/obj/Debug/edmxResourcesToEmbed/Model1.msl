@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="EventsModelStoreContainer" CdmEntityContainer="EventsEntities">
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="EventsModel.Customers">
+        <MappingFragment StoreEntitySet="Customers">
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Street" ColumnName="Street" />
+          <ScalarProperty Name="NumHouse" ColumnName="NumHouse" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Foods">
+      <EntityTypeMapping TypeName="EventsModel.Foods">
+        <MappingFragment StoreEntitySet="Foods">
+          <ScalarProperty Name="FoodId" ColumnName="FoodId" />
+          <ScalarProperty Name="CategoryNum" ColumnName="CategoryNum" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="FoodName" ColumnName="FoodName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Menu">
+      <EntityTypeMapping TypeName="EventsModel.Menu">
+        <MappingFragment StoreEntitySet="Menu">
+          <ScalarProperty Name="MenuId" ColumnName="MenuId" />
+          <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MenuForOrder">
+      <EntityTypeMapping TypeName="EventsModel.MenuForOrder">
+        <MappingFragment StoreEntitySet="MenuForOrder">
+          <ScalarProperty Name="MenuForOrderId" ColumnName="MenuForOrderId" />
+          <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+          <ScalarProperty Name="CategoryNum" ColumnName="CategoryNum" />
+          <ScalarProperty Name="FoodId" ColumnName="FoodId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Order">
+      <EntityTypeMapping TypeName="EventsModel.Order">
+        <MappingFragment StoreEntitySet="Order">
+          <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+          <ScalarProperty Name="EventDate" ColumnName="EventDate" />
+          <ScalarProperty Name="StatusPayment" ColumnName="StatusPayment" />
+          <ScalarProperty Name="MorningOrEvening" ColumnName="MorningOrEvening" />
+          <ScalarProperty Name="QuantityInvited" ColumnName="QuantityInvited" />
+          <ScalarProperty Name="NumBridalChair" ColumnName="NumBridalChair" />
+          <ScalarProperty Name="OrderSum" ColumnName="OrderSum" />
+          <ScalarProperty Name="AdvancePaymentSum" ColumnName="AdvancePaymentSum" />
+          <ScalarProperty Name="EventKind" ColumnName="EventKind" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="EventsModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderChange">
+      <EntityTypeMapping TypeName="EventsModel.OrderChange">
+        <MappingFragment StoreEntitySet="OrderChange">
+          <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+          <ScalarProperty Name="EventDate" ColumnName="EventDate" />
+          <ScalarProperty Name="EventKind" ColumnName="EventKind" />
+          <ScalarProperty Name="StatusPayment" ColumnName="StatusPayment" />
+          <ScalarProperty Name="MorningOrEvening" ColumnName="MorningOrEvening" />
+          <ScalarProperty Name="QuantityInvited" ColumnName="QuantityInvited" />
+          <ScalarProperty Name="NumBridalChair" ColumnName="NumBridalChair" />
+          <ScalarProperty Name="OrderSum" ColumnName="OrderSum" />
+          <ScalarProperty Name="AdvancePaymentSum" ColumnName="AdvancePaymentSum" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PayMents">
+      <EntityTypeMapping TypeName="EventsModel.PayMents">
+        <MappingFragment StoreEntitySet="PayMents">
+          <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+          <ScalarProperty Name="PaymentCyclistDetails" ColumnName="PaymentCyclistDetails" />
+          <ScalarProperty Name="OrderPaymentCsicleDetails" ColumnName="OrderPaymentCsicleDetails" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

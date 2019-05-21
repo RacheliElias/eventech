@@ -1,0 +1,10 @@
+d:\Users\user\Desktop\projectEventTek\EventTekServer\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
+d:\Users\user\Desktop\projectEventTek\EventTekServer\DAL\bin\Debug\DAL.dll.config
+d:\Users\user\Desktop\projectEventTek\EventTekServer\DAL\bin\Debug\DAL.dll
+d:\Users\user\Desktop\projectEventTek\EventTekServer\DAL\bin\Debug\DAL.pdb
+d:\Users\user\Desktop\projectEventTek\EventTekServer\DAL\bin\Debug\EntityFramework.dll
+d:\Users\user\Desktop\projectEventTek\EventTekServer\DAL\bin\Debug\EntityFramework.SqlServer.dll
+d:\Users\user\Desktop\projectEventTek\EventTekServer\DAL\bin\Debug\EntityFramework.xml
+d:\Users\user\Desktop\projectEventTek\EventTekServer\DAL\bin\Debug\EntityFramework.SqlServer.xml
+d:\Users\user\Desktop\projectEventTek\EventTekServer\DAL\obj\Debug\DAL.dll
+d:\Users\user\Desktop\projectEventTek\EventTekServer\DAL\obj\Debug\DAL.pdb

@@ -1,0 +1,30 @@
+
+<form [formGroup]="detalidNewcustomer" (ngSubmit)="onSubmit()">
+    <input type="text" placeholder="קוד לקוח" formControlName="CustomerId">  
+    <br> <br>
+<input type="text" placeholder="שם פרטי*" formControlName="FirstName">
+<br><br>
+<input type="text" placeholder="שם משפחה*" formControlName="LastName" >
+<br><br>
+
+ <input type="text" placeholder="סיסמה*" formControlName="Password">
+<br>
+<p *ngIf="!detalidNewcustomer.controls.City.valid &&detalidNewcustomer.controls.Password.dirty ">נא להזין סיסמא בין 6 ל 8 ספרות</p>
+<br>
+<input type="text" placeholder="עיר*"  formControlName="City">
+<br><br>
+<input type="text" placeholder="רחוב*"  formControlName="Street">
+<br><br>
+<input type="tel" placeholder="פלאפון*"  formControlName="Phone">
+<p *ngIf="!detalidNewcustomer.controls.Phone.valid">נא הזן מספר פלאפון</p>  
+<br>
+<input type="email" placeholder="אימייל*" formControlName="Email">
+<p *ngIf="!detalidNewcustomer.controls.Email.valid">חובה להזין כתובת מייל  </p>  
+<br>
+<br>
+<input type="submit" value="הרשמה" name="submit" >
+<!-- [disabled]="!detalidNewcustomer.valid" -->
+
+<br>
+</form>
+
